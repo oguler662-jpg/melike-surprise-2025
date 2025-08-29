@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Melike'nin Günü</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(to right, #ffdde1, #ee9ca7);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      color: #fff;
+      text-align: center;
+      overflow: hidden;
+    }
+    .container {
+      max-width: 500px;
+      padding: 30px;
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      box-shadow: 0 0 30px rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+    }
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+    input {
+      padding: 10px;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      margin-top: 10px;
+      width: 80%;
+    }
+    button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 10px;
+      background-color: #fff;
+      color: #ee9ca7;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    #countdown {
+      font-size: 48px;
+      margin-top: 20px;
+      display: none;
+    }
+    .hidden {
+      display: none;
+    }
+    .message {
+      font-size: 17px;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      text-align: left;
+      margin-top: 20px;
+    }
+    img {
+      width: 100%;
+      border-radius: 20px;
+      margin-top: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>🎂 Melike'nin Günü 🎉</h1>
+    <p>Bu özel siteye giriş için şifreyi gir 💖</p>
+    <input type="password" id="passwordInput" placeholder="Şifre: melike" />
+    <button onclick="checkPassword()">Giriş</button>
+    <div id="countdown">10</div>
+    <audio id="bgMusic" src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3"></audio>
+  </div>
+
+  <script>
+    function checkPassword() {
+      const input = document.getElementById("passwordInput").value;
+      if (input === "melike") {
+        document.getElementById("passwordInput").classList.add("hidden");
+        document.querySelector("button").classList.add("hidden");
+        document.querySelector("p").textContent = "Hazır mısın? Sürpriz başlıyor!";
+        startCountdown();
+      } else {
+        alert("Yanlış şifre 🙈");
+      }
+    }
+
+    function startCountdown() {
+      const countdown = document.getElementById("countdown");
+      countdown.style.display = "block";
+      let timeLeft = 10;
+      countdown.textContent = timeLeft;
+      const timer = setInterval(() => {
+        timeLeft--;
+        countdown.textContent = timeLeft;
+        if (timeLeft === 0) {
+          clearInterval(timer);
+          document.querySelector(".container").innerHTML = `
+            <h1>💖 Melike, iyi ki doğdun 💖</h1>
+            <div class="message">
+              Melike,
+
+              Bugün senin doğum günün. Belki her şey tam değil, belki hâlâ aramızda mesafeler var. 
+              Ama bu özel gününde sana içten bir şey söylemek istedim.
+
+              Sana söylediğim o yalan… keşke hiç olmasaydı. 
+              Ama seninle yeniden konuşmak, gülmek, hatta susmak bile güzeldi. 
+              Zaman istedin, ve ben bunu anlıyorum. Çünkü bazen en değerli şey, biraz beklemeyi bilmektir.
+
+              Bu sayfa, bir özür değil sadece. Bir teşekkür. 
+              Varlığın için, sabrın için, güzelliğin için. 
+              Belki bir gün yeniden başlarız. Belki bu satırlar, o günün ilk adımı olur.
+
+              Doğum günün kutlu olsun Melike. Sen hep en iyisini hak ettin.
+
+              – Emirhan
+            </div>
+            <img src="https://i.imgur.com/3ZQ3Z4T.png" alt="Melike" />
+          `;
+          document.getElementById("bgMusic").play();
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
